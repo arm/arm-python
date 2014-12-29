@@ -61,11 +61,12 @@ class Listener(Leap.Listener):
 			if x < 0:
 				rotation = 180 + rotation
 			rotation = 180 - rotation
-			print rotation
+			# print rotation
 
 			send = [255]
 			send.append(int(pinch))
 			send.append(int(wrist))
+			send.append(int(rotation))
 
 			# cool visual for pinch strength:
 			# for i in range(0, 90 - int(pinch - 90)):
