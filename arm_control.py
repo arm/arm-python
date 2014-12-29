@@ -5,10 +5,12 @@ import serial, Leap
 
 servo_bounds = {
 	'pinch': (90, 180),
+	'wrist': (0,180),
 }
 
 leap_bounds = {
 	'pinch': (0, 1),
+	'wrist': (-90,90),
 }
 
 class Listener(Leap.Listener):
@@ -30,15 +32,17 @@ class Listener(Leap.Listener):
 		if frame.hands:
 			hand = frame.hands.rightmost
 			pinch = map_range_tuples(leap_bounds['pinch'], servo_bounds['pinch'], 1 - hand.pinch_strength) # fix to use tuples later
+			wrist = map_range_tuples(leap_bounds['wrist'], servo_bounds['wrist'], hand.direction.pitch * Leap.RAD_TO_DEG)
 			# 1 - pinchStrength because servo is inverted
 			send = [255]
 			send.append(int(pinch))
+			send.append(int(wrist))
 
 			# cool visual for pinch strength:
-			for i in range(0, 90 - int(pinch - 90)):
-				sys.stdout.write('-')
-			print ''
-
+			# for i in range(0, 90 - int(pinch - 90)):
+				# sys.stdout.write('-')
+			# print ''
+			print wrist
 			# clear buffers!
 			arduino_ser.flushInput()
 			arduino_ser.flushOutput()
