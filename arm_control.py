@@ -7,12 +7,14 @@ servo_bounds = {
 	'pinch': (90, 180),
 	'wrist': (0,180),
 	'twist': (10,180),
+	# 'shoulder_right': (0, 175),
+	# 'shoulder_left': (180, 0)
 }
 
 leap_bounds = {
 	'pinch': (0, 1),
 	'wrist': (-90,90),
-
+	# 'shoulder': (0, 180),
 }
 
 class Listener(Leap.Listener):
@@ -36,7 +38,7 @@ class Listener(Leap.Listener):
 			pinch = map_range_tuples(leap_bounds['pinch'], servo_bounds['pinch'], 1 - hand.pinch_strength) # fix to use tuples later
 			wrist = map_range_tuples(leap_bounds['wrist'], servo_bounds['wrist'], hand.direction.pitch * Leap.RAD_TO_DEG)
 			# 1 - pinchStrength because sersvo is inverted
-
+			# shoulder = #blah 0-180
 			x = hand.palm_position.x
 			y = hand.palm_position.y
 			z = hand.palm_position.z
@@ -58,6 +60,9 @@ class Listener(Leap.Listener):
 			z = 200 - z
 			rotation =  math.atan(z / x) * (180 / math.pi)
 			# print x, z, y
+			shoulder = (z / 400) * 175
+			# print z, shoulder
+			print shoulder
 			if x < 0:
 				rotation = 180 + rotation
 			rotation = 180 - rotation
@@ -67,6 +72,9 @@ class Listener(Leap.Listener):
 			send.append(int(pinch))
 			send.append(int(wrist))
 			send.append(int(rotation))
+			send.append(int(175 - shoulder))
+			send.append(int(shoulder))
+
 
 			# cool visual for pinch strength:
 			# for i in range(0, 90 - int(pinch - 90)):
