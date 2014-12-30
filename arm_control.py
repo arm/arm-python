@@ -7,8 +7,8 @@ servo_bounds = {
 	'pinch': (90, 180),
 	'wrist': (0,180),
 	'twist': (10,180),
-	# 'shoulder_right': (0, 175),
-	# 'shoulder_left': (180, 0)
+	'shoulder_right': (0, 174),
+	'shoulder_left': (180, 6)
 }
 
 leap_bounds = {
@@ -60,7 +60,7 @@ class Listener(Leap.Listener):
 			z = 200 - z
 			rotation =  math.atan(z / x) * (180 / math.pi)
 			# print x, z, y
-			shoulder = (z / 400) * 175
+			shoulder = (z / 400) * 174;
 			# print z, shoulder
 			print shoulder
 			if x < 0:
@@ -72,7 +72,7 @@ class Listener(Leap.Listener):
 			send.append(int(pinch))
 			send.append(int(wrist))
 			send.append(int(rotation))
-			send.append(int(175 - shoulder))
+			send.append(int(174 - shoulder))
 			send.append(int(shoulder))
 
 

@@ -20,7 +20,7 @@ void setup() {
   pinchServo.write(160);
   wristServo.write(90);
   shoulderServoLeft.write(60);
-  shoulderServoRight.write(125);
+  shoulderServoRight.write(180 -  66);
   twistServo.write(95);
 }
 
