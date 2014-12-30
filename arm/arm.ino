@@ -2,9 +2,11 @@
 
 Servo pinchServo;
 Servo wristServo;
-Servo twistServo;
+Servo elbowServo;
 Servo shoulderServoLeft;
 Servo shoulderServoRight;
+Servo twistServo;
+
 
 int numServos = 5;
 
@@ -13,14 +15,16 @@ void setup() {
 
   pinchServo.attach(13);
   wristServo.attach(12);
+  elbowServo.attach(11);
   shoulderServoLeft.attach(10);
   shoulderServoRight.attach(9);
   twistServo.attach(8);
 
   pinchServo.write(160);
   wristServo.write(90);
+  elbowServo.write(30);
   shoulderServoLeft.write(60);
-  shoulderServoRight.write(180 -  66);
+  shoulderServoRight.write(180 - 66);
   twistServo.write(95);
 }
 

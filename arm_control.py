@@ -62,7 +62,7 @@ class Listener(Leap.Listener):
 			# print x, z, y
 			shoulder = (z / 400) * 174;
 			# print z, shoulder
-			print shoulder
+			# print shoulder
 			if x < 0:
 				rotation = 180 + rotation
 			rotation = 180 - rotation
