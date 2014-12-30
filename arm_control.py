@@ -74,9 +74,10 @@ class Listener(Leap.Listener):
 			rotation = 180 - rotation
 			# print rotation
 			
-			x = x/2
-			y = y/2
-			z = z/2
+			x = x/1.5
+			y = y/1.5
+			z = z/1.5
+			# ^ quick fix, map ranges later
 			dist = math.sqrt(x**2 + z**2) # x, z distance from origin point
 			# print dist
 
@@ -99,7 +100,7 @@ class Listener(Leap.Listener):
 			send = [255]
 			send.append(int(pinch))
 			send.append(int(wrist))
-			send.append(int(rotation))
+			send.append(int(rotation*1.1))
 			send.append(int(elbow))
 			send.append(int(174 - shoulder))
 			send.append(int(shoulder))
