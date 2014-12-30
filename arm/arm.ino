@@ -8,7 +8,7 @@ Servo shoulderServoRight;
 Servo twistServo;
 
 
-int numServos = 5;
+int numServos = 6;
 
 void setup() {
   Serial.begin(9600);
@@ -42,8 +42,9 @@ void loop() {
         pinchServo.write(data[0]);
         wristServo.write(data[1]);
         twistServo.write(data[2]);
-        shoulderServoLeft.write(data[3]);
-        shoulderServoRight.write(data[4]);
+        elbowServo.write(data[3]);
+        shoulderServoLeft.write(data[4]);
+        shoulderServoRight.write(data[5]);
       }
     }
     else {
