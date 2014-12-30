@@ -8,15 +8,15 @@ servo_bounds = {
 	'wrist': (0,180),
 	'twist': (10,180),
 	'elbow': (5, 180),
-	'shoulder_right': (0, 174),
-	'shoulder_left': (180, 6)
+	# 'shoulder_right': (0, 174),
+	# 'shoulder_left': (180, 6)
 }
 
 leap_bounds = {
 	'pinch': (0, 1),
 	'wrist': (-90,90),
 	'elbow': (0, -180),
-	# 'shoulder': (0, 180),
+	'shoulder': (0, 180),
 }
 
 l1 = 140 # length of upper arm
@@ -65,10 +65,8 @@ class Listener(Leap.Listener):
 			z = 200 - z
 			rotation =  math.atan(z / x) * (180 / math.pi)
 		
-
-
 			# print x, z, y
-			shoulder = (z / 400) * 174;
+			# shoulder = (z / 400) * 174;
 			# print z, shoulder
 			# print shoulder
 			if x < 0:
@@ -80,6 +78,8 @@ class Listener(Leap.Listener):
 			y = y/2
 			z = z/2
 			dist = math.sqrt(x**2 + z**2) # x, z distance from origin point
+			# print dist
+
 			theta_2 = math.atan2(-math.sqrt(1 - ((dist**2 + y**2 - l1**2 - l2**2) / (2 * l1 * l2))**2 ), ((dist**2 + y**2 - l1**2 - l2**2) / (2 * l1 * l2)) )
 			
 			k1 = l1 + l2 * math.cos(theta_2)
@@ -90,7 +90,10 @@ class Listener(Leap.Listener):
 			# print theta_1 * (180 / math.pi), theta_2 * (180 / math.pi)
 
 			elbow = map_range_tuples(leap_bounds['elbow'], servo_bounds['elbow'], theta_2 * (180 / math.pi))
-			print theta_2 * (180 / math.pi), elbow
+			shoulder = map_range(0, 180, 174, 0, theta_1 * (180 / math.pi))
+			# shoulder = theta_2 * (180 / math.pi)
+			# print theta_2 * (180 / math.pi), elbow
+			# print shoulder
 
 
 			send = [255]
