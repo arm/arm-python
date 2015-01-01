@@ -75,7 +75,7 @@ class Listener(Leap.Listener):
 			# print rotation
 			
 			x = x/1.5
-			y = y/1.5
+			y = y/1.5 - 55
 			z = z/1.5
 			# ^ quick fix, map ranges later
 			dist = math.sqrt(x**2 + z**2) # x, z distance from origin point
